@@ -1,0 +1,44 @@
+{
+	"products": [
+		{
+			"id": 1,
+			"name": "LENOVO LOQ TOWER 17IRB8 STATIONÆR PC",
+			"description": "Lenovo LOQ Tower 17IRB8 (90VH0095MW) er en højtydende stationær PC samlet i et kompakt 17-liters kabinet med nok strøm til spil, streaming og produktivt arbejde. Nyd en 13. generation af Intel® Core™-processor og NVIDIA RTX 40-seriens grafisk kraft!",
+			"imageSrc": "https://cdn.discordapp.com/attachments/405056195976626186/1219737112472191016/image.png?ex=660c63b5&is=65f9eeb5&hm=11ed8a87e64af6fd288c5b5d44b5f8d27c8c4be068d870947e6d531634f09eb0&",
+			"price": 9499,
+			"rating": 4
+		},
+		{
+			"id": 2,
+			"name": "Product 2",
+			"description": "This is a product description.",
+			"imageSrc": "https://via.placeholder.com/150",
+			"price": 200,
+			"rating": 4
+		},
+		{
+			"id": 3,
+			"name": "Product 3",
+			"description": "This is a product description.",
+			"imageSrc": "https://via.placeholder.com/150",
+			"price": 300,
+			"rating": 4
+		},
+		{
+			"id": 4,
+			"name": "Product 4",
+			"description": "This is a product description.",
+			"imageSrc": "https://via.placeholder.com/150",
+			"price": 400,
+			"rating": 4
+		},
+		{
+			"id": 5,
+			"name": "Product 5",
+			"description": "This is a product description.",
+			"imageSrc": "https://via.placeholder.com/150",
+			"price": 500,
+			"rating": 4
+		}
+	]
+}
