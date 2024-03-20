@@ -1,6 +1,7 @@
 import './style.scss';
 
 import Card from './components/Card';
+import Slider from './components/Slider';
 import data from './../assets/json/data.json';
 
 (() => {
@@ -11,13 +12,21 @@ import data from './../assets/json/data.json';
 	container.classList.add('container');
 	app?.appendChild(container);
 
-	const testCardData: CardData = {
-		imageSrc: products[0].imageSrc,
-		title: products[0].name,
-		contentText: products[0].description,
-		price: products[0].price,
-		rating: products[0].rating,
-	};
-	const card = new Card(testCardData).createCard();
-	container.appendChild(card);
+	let cards: HTMLElement[] = [];
+	products.forEach((product) => {
+		const card = new Card(product).createCard();
+		cards.push(card);
+	});
+
+	const slider = new Slider({
+		amount: 3,
+		autoplay: true,
+		autoplaySpeed: 3000,
+		dots: true,
+		arrows: true,
+		infinite: true,
+		slides: cards,
+	}).createSlider();
+
+	container.appendChild(slider);
 })();

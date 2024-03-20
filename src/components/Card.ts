@@ -7,8 +7,6 @@ export default class Card {
 	}
 
 	createCard() {
-		console.log('Card component');
-
 		const cardWrapper = document.createElement('div');
 		cardWrapper.classList.add('card-wrapper');
 		document.body.appendChild(cardWrapper);
@@ -36,7 +34,8 @@ export default class Card {
 		const cardImage = document.createElement('img');
 		cardImage.classList.add('card-image');
 		cardImage.src =
-			this.cardData.imageSrc || 'https://via.placeholder.com/150';
+			`./assets/images/${this.cardData.imageSrc}` ||
+			'https://via.placeholder.com/150';
 		cardImage.alt = this.cardData.imageAlt || 'Placeholder image';
 		card.appendChild(cardImage);
 
