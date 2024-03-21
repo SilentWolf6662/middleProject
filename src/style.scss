@@ -27,6 +27,8 @@ $color-rating: #ffa500;
 
 .card-wrapper {
 	max-width: 550px;
+	max-height: 640px;
+	height: 640px;
 	margin: 0 auto;
 	padding: 0 20px;
 }
@@ -41,6 +43,9 @@ $color-rating: #ffa500;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	max-width: 550px;
+	max-height: 640px;
+	height: 640px;
 
 	&-image {
 		width: 300px;
@@ -54,6 +59,7 @@ $color-rating: #ffa500;
 	&-title {
 		font-size: 1.5rem;
 		font-weight: 500;
+		text-align: center;
 	}
 
 	&-description {
@@ -129,11 +135,7 @@ $color-rating: #ffa500;
 				6px 6px 10px -1px $color-shade-1,
 				-6px -6px 10px -1px $color-shade-2;
 			&:active {
-				background: linear-gradient(
-					145deg,
-					$color-background-shade-1,
-					$color-background-shade-2
-				);
+				background: linear-gradient(145deg, $color-background-shade-1, $color-background-shade-2);
 				box-shadow:
 					6px 6px 10px -1px $color-shade-1,
 					-6px -6px 10px -1px $color-shade-2;
@@ -145,11 +147,7 @@ $color-rating: #ffa500;
 				-6px 6px 10px -1px $color-shade-1,
 				6px -6px 10px -1px $color-shade-2;
 			&:active {
-				background: linear-gradient(
-					145deg,
-					$color-background-shade-1,
-					$color-background-shade-2
-				);
+				background: linear-gradient(145deg, $color-background-shade-1, $color-background-shade-2);
 				box-shadow:
 					-6px 6px 10px -1px $color-shade-1,
 					6px -6px 10px -1px $color-shade-2;
@@ -172,6 +170,7 @@ $color-rating: #ffa500;
 	}
 
 	&-dot {
+		appearance: none;
 		-webkit-appearance: none;
 		/* remove default */
 		margin: 6px;
@@ -185,6 +184,9 @@ $color-rating: #ffa500;
 			inset hsla(0, 0%, 0%, 0.5) 0 0 0 1px;
 		background-color: hsla(0, 0%, 0%, 0.2);
 		background-repeat: no-repeat;
+		transition:
+			background-position 0.15s cubic-bezier(0.8, 0, 1, 1),
+			transform 0.25s cubic-bezier(0.8, 0, 1, 1);
 		-webkit-transition:
 			background-position 0.15s cubic-bezier(0.8, 0, 1, 1),
 			-webkit-transform 0.25s cubic-bezier(0.8, 0, 1, 1);
@@ -228,12 +230,17 @@ $color-rating: #ffa500;
 	}
 
 	&-dot:checked {
+		transition:
+			background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1),
+			transform 0.25s cubic-bezier(0, 0, 0.2, 1);
 		-webkit-transition:
 			background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1),
 			-webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
 	}
 
 	&-dot:active {
+		transform: scale(1.5);
+		transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1);
 		-webkit-transform: scale(1.5);
 		-webkit-transition: -webkit-transform 0.1s cubic-bezier(0, 0, 0.2, 1);
 	}
@@ -252,5 +259,9 @@ $color-rating: #ffa500;
 	&-dot:checked ~ &-dot,
 	&-dot:checked ~ &-dot:active {
 		background-position: -24px 0;
+	}
+
+	&-dot.active {
+		background-color: #007bff; /* Example color */
 	}
 }

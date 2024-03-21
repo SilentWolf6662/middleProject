@@ -63,4 +63,19 @@ export default class RatingStar {
 
 		return ratingStars;
 	}
+
+	updateRatingStars(ratingAmount: number, rating?: number) {
+		const emptyStar = '☆';
+		const fullStar = '★';
+
+		const ratingStars = document.querySelector('.card-rating-stars');
+		if (ratingStars) {
+			let stars = '';
+			for (let i = 0; i < ratingAmount; i++) {
+				if (i < (rating || 0)) stars += fullStar;
+				else stars += emptyStar;
+			}
+			ratingStars.textContent = stars;
+		}
+	}
 }

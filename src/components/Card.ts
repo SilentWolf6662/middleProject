@@ -6,7 +6,7 @@ export default class Card {
 		this.cardData = cardData;
 	}
 
-	createCard() {
+	createCard(RS: RatingStar) {
 		const cardWrapper = document.createElement('div');
 		cardWrapper.classList.add('card-wrapper');
 		document.body.appendChild(cardWrapper);
@@ -20,10 +20,7 @@ export default class Card {
 		cardRating.textContent = `${this.cardData.rating || 0}`;
 		card.appendChild(cardRating);
 
-		const cardRatingStar = new RatingStar().createRatingStars(
-			5,
-			this.cardData.rating,
-		);
+		const cardRatingStar = RS.createRatingStars(5, this.cardData.rating);
 		cardRating.appendChild(cardRatingStar);
 
 		const cardTitle = document.createElement('h2');
@@ -53,35 +50,34 @@ export default class Card {
 		return cardWrapper;
 	}
 
-	changeContent(dataToUpdate: CardData) {
+	changeContent(dataToUpdate: any, RS: RatingStar) {
 		const card = document.querySelector('.card');
+
 		const cardContent = card?.querySelector('.card-content');
 		if (cardContent) {
-			cardContent.textContent = 'New content';
+			cardContent.textContent = dataToUpdate.description || 'New content';
 		}
 
 		const cardPrice = card?.querySelector('.card-price');
 		if (cardPrice) {
-			cardPrice.textContent = 'New price';
+			cardPrice.textContent = `${dataToUpdate.price || 0}`;
 		}
 
-		const cardRating = card?.querySelector('.card-rating');
-		const cardRatingStar = new RatingStar().createRatingStars(5, 5);
-		if (cardRating) {
-			cardRating.textContent = '5';
-			cardRating.appendChild(cardRatingStar);
-		}
+		RS.updateRatingStars(5, dataToUpdate.rating || 0);
 
 		const cardImage = card?.querySelector(
 			'.card-image',
 		) as HTMLImageElement;
+
 		if (cardImage) {
-			cardImage.src = './assets/images/new-image.jpg';
+			cardImage.src = dataToUpdate.imageSrc
+				? `./assets/images/${dataToUpdate.imageSrc}`
+				: 'https://via.placeholder.com/150';
 		}
 
 		const cardTitle = card?.querySelector('.card-title');
 		if (cardTitle) {
-			cardTitle.textContent = 'New title';
+			cardTitle.textContent = dataToUpdate.name || 'New title';
 		}
 
 		return card;
