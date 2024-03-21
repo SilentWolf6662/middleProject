@@ -1,8 +1,12 @@
+import Card from './Card';
+
 export default class Slider {
+	card: Card;
 	sliderData: SliderData;
 	slideIndex: number = 1;
-	constructor(sliderData: SliderData) {
+	constructor(sliderData: SliderData, card: Card) {
 		this.sliderData = sliderData;
+		this.card = card;
 	}
 
 	createSlider() {
@@ -17,14 +21,6 @@ export default class Slider {
 		const sliderSlides = document.createElement('div');
 		sliderSlides.classList.add('slider-slides');
 		slider.appendChild(sliderSlides);
-
-		this.sliderData.slides?.forEach((slide, index) => {
-			slide.classList.add('slider-slide');
-			if (index === 0) {
-				slide.classList.add('slider-slide-active');
-			}
-			sliderSlides.appendChild(slide);
-		});
 
 		if (this.sliderData.arrows) {
 			const sliderArrows = document.createElement('div');
@@ -50,11 +46,21 @@ export default class Slider {
 			const sliderDots = document.createElement('div');
 			sliderDots.classList.add('slider-dots');
 			sliderWrapper.appendChild(sliderDots);
-			this.sliderData.slides?.forEach((_, index) => {
-				const dot = document.createElement('span');
+
+			this.sliderData.slides?.forEach((_: CardData, index: number) => {
+				const dot = document.createElement('input');
+				dot.type = 'radio';
+				dot.name = `slider-dot`;
 				dot.classList.add('slider-dot');
-				dot.onclick = () =>
-					this.showSlides((this.slideIndex = index + 1));
+				dot.classList.add('slider-dot-blue');
+				dot.value = `slider-dot-${index}`;
+				if (index === 0) {
+					dot.setAttribute('checked', '');
+				}
+				dot.onclick = () => {
+					this.slideIndex = index + 1;
+					this.showSlides(this.slideIndex);
+				};
 				sliderDots.appendChild(dot);
 			});
 		}
@@ -85,19 +91,12 @@ export default class Slider {
 			}
 		}
 
-		slides[this.slideIndex - 1].style.display = 'block';
-		if (this.sliderData.dots) {
-			//console.log({ dot: this.slideIndex - 1 });
-			dots[this.slideIndex - 1].classList.toggle('slider-dots-active');
-		}
+		let slideIndex = this.slideIndex - 1;
 
-		this.sliderData.slides?.forEach((slide, index) => {
-			if (index === this.slideIndex - 1) {
-				slide.classList.add('slider-slide-active');
-			} else {
-				slide.classList.remove('slider-slide-active');
-			}
-		});
+		slides[slideIndex].style.display = 'block';
+		if (this.sliderData.dots) {
+			dots[slideIndex].classList.toggle('slider-dots-active');
+		}
 
 		console.log({
 			currentSliderIndex: this.slideIndex,
@@ -106,10 +105,12 @@ export default class Slider {
 	}
 
 	previousSlide() {
-		this.showSlides((this.slideIndex -= 1));
+		this.slideIndex -= 1;
+		this.showSlides(this.slideIndex);
 	}
 
 	nextSlide() {
-		this.showSlides((this.slideIndex += 1));
+		this.slideIndex += 1;
+		this.showSlides(this.slideIndex);
 	}
 }

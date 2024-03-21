@@ -1,4 +1,5 @@
 interface CardData {
+	id?: number;
 	title?: string;
 	contentText?: string;
 	imageSrc?: string;
@@ -14,5 +15,6 @@ interface SliderData {
 	autoplaySpeed?: number;
 	dots?: boolean;
 	infinite?: boolean;
-	slides?: HTMLElement[];
+	slides?: Card;
+	card: Card;
 }

@@ -12,21 +12,31 @@ import data from './../assets/json/data.json';
 	container.classList.add('container');
 	app?.appendChild(container);
 
-	let cards: HTMLElement[] = [];
-	products.forEach((product) => {
-		const card = new Card(product).createCard();
-		cards.push(card);
+	const card = new Card({
+		id: products[0].id,
+		title: products[0].name,
+		contentText: products[0].description,
+		imageSrc: products[0].imageSrc,
+		imageAlt: products[0].name,
+		price: products[0].price,
+		rating: products[0].rating,
 	});
+	const cardToAdd = card.createCard();
+	container.appendChild(cardToAdd);
 
-	const slider = new Slider({
-		amount: 3,
-		autoplay: true,
-		autoplaySpeed: 3000,
-		dots: true,
-		arrows: true,
-		infinite: true,
-		slides: cards,
-	}).createSlider();
+	const slider = new Slider(
+		{
+			amount: 3,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			dots: true,
+			arrows: true,
+			infinite: true,
+			slides: products,
+			card: card,
+		},
+		card,
+	).createSlider();
 
 	container.appendChild(slider);
 })();

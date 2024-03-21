@@ -33,9 +33,10 @@ export default class Card {
 
 		const cardImage = document.createElement('img');
 		cardImage.classList.add('card-image');
-		cardImage.src =
-			`./assets/images/${this.cardData.imageSrc}` ||
-			'https://via.placeholder.com/150';
+
+		cardImage.src = this.cardData.imageSrc
+			? `./assets/images/${this.cardData.imageSrc}`
+			: 'https://via.placeholder.com/150';
 		cardImage.alt = this.cardData.imageAlt || 'Placeholder image';
 		card.appendChild(cardImage);
 
@@ -50,5 +51,39 @@ export default class Card {
 		card.appendChild(cardPrice);
 
 		return cardWrapper;
+	}
+
+	changeContent(dataToUpdate: CardData) {
+		const card = document.querySelector('.card');
+		const cardContent = card?.querySelector('.card-content');
+		if (cardContent) {
+			cardContent.textContent = 'New content';
+		}
+
+		const cardPrice = card?.querySelector('.card-price');
+		if (cardPrice) {
+			cardPrice.textContent = 'New price';
+		}
+
+		const cardRating = card?.querySelector('.card-rating');
+		const cardRatingStar = new RatingStar().createRatingStars(5, 5);
+		if (cardRating) {
+			cardRating.textContent = '5';
+			cardRating.appendChild(cardRatingStar);
+		}
+
+		const cardImage = card?.querySelector(
+			'.card-image',
+		) as HTMLImageElement;
+		if (cardImage) {
+			cardImage.src = './assets/images/new-image.jpg';
+		}
+
+		const cardTitle = card?.querySelector('.card-title');
+		if (cardTitle) {
+			cardTitle.textContent = 'New title';
+		}
+
+		return card;
 	}
 }
