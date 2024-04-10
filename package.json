@@ -13,5 +13,8 @@
 		"sass": "^1.72.0",
 		"typescript": "^5.2.2",
 		"vite": "^5.1.6"
+	},
+	"dependencies": {
+		"gsap": "^3.12.5"
 	}
 }
